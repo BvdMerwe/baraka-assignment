@@ -1,0 +1,95 @@
+#calendar {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	margin-top: 60px;
+	overflow: hidden;
+	max-width: 100%;
+	margin-bottom: 50px;
+
+	.controls {
+		display: grid;
+		grid-template-columns: 270px 40px 40px;
+		align-items: center;
+		gap: 10px;
+		margin-bottom: 20px;
+
+		.current-month {
+			font-size: 32px;
+			font-weight: var(--font-weight-regular);
+			margin-right: 10px;
+		}
+
+		.next-month, .prev-month {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 40px;
+			width: 40px;
+			background-color: var(--color-primary-light);
+			border-radius: 10em;
+			cursor: pointer;
+			user-select: none;
+
+			.icon {
+				font-size: 8px;
+			}
+		}
+	}
+
+	.dates {
+		position: relative;
+		display: flex;
+		align-self: center;
+		// grid-template-columns: repeat(auto-fit, minmax(55px, 1fr));
+		// transition: transform 0.2s ease-in-out;
+		
+		
+		&.n-20 {
+			width: 55px * 20;
+		}
+		&.n-28 {
+			width: 55px * 28;
+		}
+		&.n-29 {
+			width: 55px * 29;
+		}
+		&.n-30 {
+			width: 55px * 30;
+		}
+		&.n-31 {
+			width: 55px * 31;
+		}
+		
+		//selector
+		// &::before {
+		// 	content: "";
+		// 	position: absolute;
+		// 	height: 100%;
+		// 	width: 50px;
+		// 	top: 0;
+		// 	left: 0;
+		// 	background-color: var(--color-accent);
+		// 	border-radius: 100px;
+		// 	z-index: 0;
+		// 	transition: transform 0.2s ease-in-out;
+		// }
+
+		// @for $i from 0 to 32 {
+		// 	&.s-#{$i+1} {
+		// 		@if $i > 9 and $i < 32 {
+		// 			transform: translateX(($i - 8) * -55px);
+		// 		} 
+		// 		// @if $i > 14 and $i < 31 {
+		// 		// 	// transform: translateX(0%);
+		// 		// 	align-self: flex-end;
+
+		// 		// }
+
+		// 		&::before {
+		// 			transform: translateX($i * 55px);
+		// 		}
+		// 	}
+		// }
+	}
+}

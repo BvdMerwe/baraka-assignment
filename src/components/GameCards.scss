@@ -1,0 +1,20 @@
+#game-cards {
+	display: flex;
+	overflow: scroll;
+	width: fit-content;
+	min-width: 100%;
+	
+	.card-list {
+		min-width: 100%;
+		display: flex;
+		transition: transform 0.8s ease-in-out;
+	}
+
+
+	// hide scrollbars
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	-ms-overflow-style: none; 
+	scrollbar-width: none; 
+}

@@ -1,0 +1,17 @@
+.date-button {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 115px;
+	width: 55px;
+	user-select: none;
+	cursor: pointer;
+	z-index: 1;
+
+	&.current {
+		background-color: var(--color-accent);
+		border-radius: 100px;
+	}
+}

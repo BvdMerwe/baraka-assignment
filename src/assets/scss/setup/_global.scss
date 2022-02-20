@@ -1,0 +1,28 @@
+body, html {
+	font-family: 'Poppins', sans-serif;
+	font-weight: var(--font-weight-regular);
+	background-color: var(--color-primary);
+	color: var(--color-light-1);
+	overflow: hidden;
+}
+
+// type
+
+.accent {
+	color: var(--color-accent) !important;
+}
+
+.accent-hover:hover {
+	color: var(--color-accent);
+}
+
+// display
+
+.no-scrollbars {
+	//hide scrollbars
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	-ms-overflow-style: none; 
+	scrollbar-width: none; 
+}
