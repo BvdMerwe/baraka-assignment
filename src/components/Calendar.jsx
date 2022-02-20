@@ -24,7 +24,6 @@ export default function Calendar() {
 		if (games.items.length > 0 && !calendarDates.some(d => d.hasLaunches)) {
 			let newDates = calendarDates.map(a => {
 				a.hasLaunches = games.items.find(g => g.date === format(a.date, 'dd/MM/yyyy'))
-				console.log('yeet')
 				return a;
 			})
 			setCalendarDates(newDates);
