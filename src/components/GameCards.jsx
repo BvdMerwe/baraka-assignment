@@ -1,5 +1,5 @@
 import './GameCards.scss';
-import { format, parse, parseISO } from 'date-fns';
+import { format, parse } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchGames } from '../features/games/gamesSlice';
@@ -11,11 +11,9 @@ export default function GameCards(props) {
 
 	const dispatch = useDispatch();
 	let [cards, setCards] = useState([]);
-	let [shouldTrack, setShouldTrack] = useState(false);
 	let [scrollPosition, setScrollPosition] = useState(false);
 
 	function resetTracking(e) {
-		setShouldTrack(false);
 		setScrollPosition(0)
 	}
 

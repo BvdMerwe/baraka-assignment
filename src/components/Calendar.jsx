@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import './Calendar.scss';
 import Icon from './Icon';
-import { format, addMonths, subMonths, addDays, startOfDay, eachDayOfInterval, startOfMonth, endOfMonth, parse } from 'date-fns'
+import { format, addMonths, subMonths, startOfDay, eachDayOfInterval, startOfMonth, endOfMonth } from 'date-fns'
 import DateButton from './DateButton';
-import { subDays } from 'date-fns/esm';
 import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentDate as updateDateStore } from '../features/calendar/calendarSlice'
 // import { useSelector } from 'react-redux';
@@ -30,7 +29,7 @@ export default function Calendar() {
 			})
 			setCalendarDates(newDates);
 		}
-	},[games, currentDate])
+	}, [games, currentDate])
 	
 	function getFormattedDate() {
 		return format(currentDate, 'MMMM yyyy')
