@@ -8,7 +8,7 @@ export default function DateButton(props) {
 	}
 	
 	return (
-		<span className={`date-button ${props.currentDate.getDate() === props.day.getDate() ? 'current' : ''}`} key={getUnixTime(props.day)} onClick={selectDay}>
+		<span className={`date-button ${props.currentDate.getDate() === props.day.getDate() ? 'current' : ''} ${props.hasLaunches ? 'has-launches' : ''}`} key={getUnixTime(props.day)} onClick={selectDay}>
 			<span>{format(props.day, 'EEE')}</span>
 			<span>{props.day.getDate()}</span>
 		</span>

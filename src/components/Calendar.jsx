@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Calendar.scss';
 import Icon from './Icon';
-import { format, addMonths, subMonths, addDays, startOfDay, eachDayOfInterval } from 'date-fns'
+import { format, addMonths, subMonths, addDays, startOfDay, eachDayOfInterval, startOfMonth, endOfMonth, parse } from 'date-fns'
 import DateButton from './DateButton';
 import { subDays } from 'date-fns/esm';
 import { useDispatch, useSelector } from 'react-redux'
@@ -17,40 +17,53 @@ export default function Calendar() {
 	const games = useSelector(state => state.games);
 	
 	useEffect(() => {
+		//update datestore
 		let date = currentDate.toDateString();
-		dispatch(
-			updateDateStore(date)
-		)
-	})
+		dispatch(updateDateStore(date))
+
+		//check games
+		if (games.items.length > 0 && !calendarDates.some(d => d.hasLaunches)) {
+			let newDates = calendarDates.map(a => {
+				a.hasLaunches = games.items.find(g => g.date === format(a.date, 'dd/MM/yyyy'))
+				console.log('yeet')
+				return a;
+			})
+			setCalendarDates(newDates);
+		}
+	},[games, currentDate])
 	
 	function getFormattedDate() {
 		return format(currentDate, 'MMMM yyyy')
 	}
 
 	function getCalendarDates(day) {
-		let start = subDays(day, 10);
-		let end = addDays(day, 10);
+		let start = startOfMonth(day);
+		let end = endOfMonth(day);
 		
-		let arr = eachDayOfInterval({ start, end }, { step: 1 });
+		let arr = eachDayOfInterval({ start, end }, { step: 1 }).map(d => {
+			return {
+				date: d,
+				hasLaunches: false,
+			}
+		});
 		
 		return arr;
 	}
 
 	function nextMonth() {
-		let nextMonth = addMonths(currentDate, 1);
+		let nextMonth = addMonths(startOfMonth(currentDate), 1);
 		setCurrentDate(nextMonth);
 		setCalendarDates(getCalendarDates(nextMonth));
 	}
 	
 	function previousMonth() {
-		let prevMonth = subMonths(currentDate, 1);
+		let prevMonth = subMonths(startOfMonth(currentDate), 1);
 		setCurrentDate(prevMonth);
 		setCalendarDates(getCalendarDates(prevMonth));
 	}
 
 	function selectDay(day) {
 		setCurrentDate(day);
-		setCalendarDates(getCalendarDates(day));
 	}
 
 	return (
@@ -63,7 +76,7 @@ export default function Calendar() {
 			<div className={`dates n-${calendarDates.length} s-${currentDate.getDate()}`}>
 				{
 					calendarDates.map(d => {
-						return <DateButton day={d} key={d} clicked={selectDay} currentDate={currentDate} />
+						return <DateButton day={d.date} key={d.date} hasLaunches={d.hasLaunches} clicked={selectDay} currentDate={currentDate} />
 					})
 				}
 			</div>

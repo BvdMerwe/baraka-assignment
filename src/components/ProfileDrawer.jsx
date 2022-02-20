@@ -9,7 +9,6 @@ export default function ProfileDrawer(props) {
 	let [search, setSearch] = useState('');
 
 	function handleSearch(e) {
-		console.log(e)
 		setSearch(e.target.value);
 	}
 

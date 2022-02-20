@@ -20,10 +20,8 @@ export default function GameCards(props) {
 	}
 
 	function trackMouse(e) {
-		let scroller = document.querySelector('.card-list');
 		let card = e.target;
 		let translateAmount = card.offsetLeft;
-		console.log(scroller.offsetLeft, card.offsetLeft);
 		setScrollPosition(translateAmount);
 	}
 
